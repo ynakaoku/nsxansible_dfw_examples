@@ -1,0 +1,107 @@
+# # Deploy vCenter section
+# # the following section defines the vCenter / vSphere environment 
+# # were the NSX Manager OVA gets deployed. This can be a separate management vCenter,
+# # or the same vCenter to which NSX Manager gets registered
+# deployVcIPAddress: '172.16.128.11'
+# deployVcUser: 'administrator@netlab.local'
+# deployVcPassword: 'vmwareACI1!'
+# 
+# # NSX Manager OVA deployment parameters
+# # this section holds all parameters needed to deploy the NSX Manager OVA like IP address, etc.
+# deployMgmtPortGroup: 'Mgmt128'
+# deployDataCenterName: 'NetLab'
+# deployCluster: 'Mgmt'
+# deployMgmtDatastoreName: 'tintri02'
+# deployMgmtIpAddress: '172.16.128.12'
+# deployMgmtDefaultGateway: '172.16.128.254'
+# deployMgmtNetmask: '255.255.255.0'
+# deployMgmtDnsServer: '172.16.128.101'
+# #deployMgmtDnsDomain: 'vmware.com'
+# deployNtpServers: '172.16.101.1'
+# deploySyslogServer: '172.17.128.14'
+# deployVmName: "NSX Manager"
+# #deployHostname: 'nsxmanager01.vmware.com'
+# nsxCliPass: 'vmwareACI1!'
+# nsxEnPass: 'vmwareACI1!'
+# 
+# #nsxmanOvaPath: '/home/vmware/ISOs'
+# #nsxmanOva: 'VMware-NSX-Manager-6.1.4-2691049.ova'
+# #ovfToolPath: '/usr/bin'  # Use '/Applications' if using ovftool on a MAC
+# 
+# # Target 'register' vCenter section
+# # the following section defines the vCenter / vSphere environment
+# # to which NSX Manager will be registered to. This can be the same as deploy vCenter,
+# # or a separate 'payload' vCenter 
+# #vcHostname: "vc01.vmware.com"
+# vcIpAddress: "172.16.128.11"
+# vcUser: "administrator@netlab.local"
+# vcPassword: "vmwareACI1!"
+# #vcSsoHostname: "vc01.vmware.com"
+# vcSsoUser: "administrator@netlab.local"
+# vcSsoPassword: "vmwareACI1!"
+
+# NSX Manager credentials and RAML file path
+nsxmanager_spec: 
+  raml_file: '/home/vmware/nsxraml/vmware/nsxraml/nsxvapi.raml'
+  host: '172.16.128.12'
+  user: 'admin'
+  password: 'vmwareACI1!'
+
+# NSX configuration details
+# including controller deployment environment details and IP Pools
+# nsxControllerPortGroup: 'Mgmt128'
+# nsxControllerDatastore: 'tintri02'
+# nsxControllerVcCluster: 'Mgmt'
+# controllerDeployType: 'lab'
+# controllerPassword: 'vmwareACI1!!'
+# controllerSyslogServer: '172.16.128.14' 
+# targetDatacenterName: 'NetLab'
+# targetVdsName: 'vDS01'
+# transportZoneName: "Transport Zone 1"
+# transportZoneDescription: ''
+# defaultControllPlaneMode: 'UNICAST_MODE'
+# 
+# nsxIppools:
+#   controller:
+#     name: 'controller-ip-pool'
+#     start_ip: '172.16.128.21'
+#     end_ip: '172.16.128.23'
+#     prefix_length: '24'
+#     gateway: '172.16.128.254'
+#     dns_server_1: '172.16.128.101'
+#     dns_server_2: '172.16.128.102'
+#   vteps:
+#     name: 'vtep-ip-pool'
+#     start_ip: '172.16.129.1'
+#     end_ip: '172.16.129.6'
+#     prefix_length: '24'
+#     gateway: '172.16.129.254'
+#     dns_server_1: '172.16.128.101'
+#     dns_server_2: '172.16.128.102'
+# 
+# # ID Pool for VXLAN
+# segmentIdPoolStart: '5000'
+# segmentIdPoolEnd: '5999'
+# mcastEnabled: 'False'
+# #mcastAddrStart: '239.0.0.0'
+# #mcastAddrEnd: '239.255.255.255'
+# 
+# # Target vCenter Cluster Section
+# # the following section defines which clusters in the target vCenter should
+# # be prepared for NSX (VIB deployment)
+# targetClusters:
+#   cluster1:
+#     clusterName: 'Resource'
+#   cluster2:
+#     clusterName: 'Mgmt'
+
+# vCenter and Cluster for Edge node deployment
+vcenter: '172.16.128.11'
+vcenter_user: 'administrator@netlab.local'
+vcenter_pwd: 'vmwareACI1!'
+vcenter_dc: 'NetLab'
+vcenter_datastore: 'tintri02'
+vcenter_edge_cluster: 'Mgmt'
+vcenter_edge_pg: 'PG-Edge-Transit'
+vcenter_mgmt_pg: 'Mgmt128'
+vcenter_vds: 'vDS01'

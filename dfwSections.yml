@@ -1,0 +1,83 @@
+dfw_sections:
+    - name: 'ansible_DFW_section_A'
+      state: 'present'
+      section_type: 'L3'
+      rules:
+      - name: 'ansible_DFW_rule_A1'
+        state: 'present'
+        disabled: 'false'
+        src_any: 'false'
+        src_excluded: 'false'
+        sources:
+          - {type: 'ipset', name: 'Node-PC-01', value: ''}
+        dest_any: 'false'
+        dest_excluded: 'false'
+        destinations:
+          - {type: 'Ipv4Address', value: '192.168.5.0/24'}
+        service_any: 'false'
+        services:
+          - {proto: 'TCP', destport: '7001', srcport: ''}
+          - {name: 'SSH'}
+        action: 'allow'
+        logged: 'true'
+        direction: 'inout'
+        pkt_type: 'any'
+        applyto: 'dfw'
+      - name: 'ansible_DFW_rule_A2'
+        state: 'present'
+        disabled: 'false'
+        src_any: 'false'
+        src_excluded: 'false'
+        sources:
+          - {type: 'vm', name: 'Web-NSX-101'}
+        dest_any: 'false'
+        dest_excluded: 'false'
+        destinations:
+          - {type: 'vm', name: 'Web-NSX-102'}
+        service_any: 'true'
+        action: 'deny'
+        logged: 'true'
+        direction: 'inout'
+        pkt_type: 'any'
+        applyto: 'dfw'
+    - name: 'ansible_DFW_section_B'
+      state: 'present'
+      section_type: 'L3'
+      rules:
+      - name: 'ansible_DFW_rule_B1'
+        state: 'present'
+        disabled: 'false'
+        src_any: 'false'
+        src_excluded: 'false'
+        sources:
+          - {type: 'ipset', name: 'Node-PC-01', value: ''}
+        dest_any: 'false'
+        dest_excluded: 'false'
+        destinations:
+          - {type: 'Ipv4Address', value: '192.168.9.0/24'}
+        service_any: 'false'
+        services:
+          - {proto: 'TCP', destport: '7001', srcport: ''}
+          - {name: 'SSH'}
+        action: 'allow'
+        logged: 'true'
+        direction: 'inout'
+        pkt_type: 'any'
+        applyto: 'dfw'
+      - name: 'ansible_DFW_rule_B2'
+        state: 'present'
+        disabled: 'false'
+        src_any: 'false'
+        src_excluded: 'false'
+        sources:
+          - {type: 'vm', name: 'Web-NSX-201'}
+        dest_any: 'false'
+        dest_excluded: 'false'
+        destinations:
+          - {type: 'vm', name: 'Web-NSX-202'}
+        service_any: 'true'
+        action: 'deny'
+        logged: 'true'
+        direction: 'inout'
+        pkt_type: 'any'
+        applyto: 'dfw'

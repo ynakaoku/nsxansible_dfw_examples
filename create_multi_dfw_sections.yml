@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - inventory-NetLab.yml
+    - dfwSections.yml
+  tasks:
+  - name: DFW section creation
+    nsx_dfw_section:
+      hostname: "{{ vcenter }}"
+      username: "{{ vcenter_user }}"
+      password: "{{ vcenter_pwd }}"
+      validate_certs: False
+      nsxmanager_spec: "{{ nsxmanager_spec }}"
+      state: "{{ item.state }}"
+      name: "{{ item.name }}"
+      section_type: "{{ item.section_type }}"
+      rules: "{{ item.rules }}"
+    with_list: "{{ dfw_sections }}"
+    register: create_dfw_section
+    tags: dfw_section_create
